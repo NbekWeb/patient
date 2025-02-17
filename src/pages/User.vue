@@ -31,6 +31,10 @@ const age = computed(() => {
   return null;
 });
 
+const getAge = (age) => {
+  return dayjs().diff(dayjs(age, "YYYY-MM-DD"), "year");
+};
+
 const formatDate = (date) => {
   const createdAt = dayjs(date);
   if (createdAt.isSame(dayjs(), "day")) return "Сегодня";
@@ -151,7 +155,7 @@ onMounted(() => {
               <span class="text-xl font-semibold">Моя история болезни:</span>
             </div>
             <div class="flex flex-col gap-3">
-              <template v-if="guest?.user_medical_history">
+              <template v-if="!!guest?.user_medical_history?.length">
                 <MedicalOne
                   :guest="false"
                   v-for="medical in guest?.user_medical_history"
@@ -262,7 +266,7 @@ onMounted(() => {
             <div class="flex flex-col text-blue-700 gap-3.5">
               <div
                 class="flex items-center gap-6 pb-3.5 border-blue-700/20"
-                :class="i != guest?.user_follow?.length && 'border-b'"
+                :class="i + 1 != guest?.user_follow?.length && 'border-b'"
                 v-for="(follower, i) in guest?.user_follow"
                 :key="i"
               >

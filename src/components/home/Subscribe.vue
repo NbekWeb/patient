@@ -32,7 +32,7 @@ const unfollow = (id) => {
       <div class="flex flex-col text-blue-700 gap-3.5">
         <div
           class="flex items-center gap-6 pb-3.5 border-blue-700/20"
-          :class="i != followers.length && 'border-b'"
+          :class="i+1 != followers.length && 'border-b'"
           v-for="(follower, i) in followers"
           :key="i"
         >

@@ -48,9 +48,9 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div>
+  <div class="">
     <div class="text-blue-700">
-      <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-6 max-sm:gap-4">
         <div class="flex items-center gap-3 text-sm">
           <router-link :to="{ name: 'main' }" class="text-blue-700"
             >Главная</router-link
@@ -62,7 +62,7 @@ onMounted(() => {
         </div>
         <h2 class="text-4xl font-semibold">Справочник</h2>
 
-        <div class="grid grid-cols-3 gap-6 ">
+        <div class="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
           <card
             v-for="catalog of directories"
             :key="catalog.id"

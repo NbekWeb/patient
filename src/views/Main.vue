@@ -74,7 +74,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <div class="flex flex-col min-h-screen overflow-x-hidden">
+  <div class="flex flex-col min-h-screen ">
     <div
       class="sticky top-0 w-full bg-white px-30 max-lg:px-10 max-sm:px-5 z-[999] max-xl:px-15 sm:h-15 flex sm:items-center max-sm:py-2.5 max-sm:flex-col gap-2.5"
     >
@@ -179,7 +179,7 @@ onUnmounted(() => {
     </div>
     <div class="flex flex-col flex-grow overflow-y-auto blue-scrollbar">
       <div
-        class="flex-grow py-10 bg-blue-100 px-30 max-sm:px-5 max-lg:px-10 max-xl:px-15"
+        class="flex-grow py-10 bg-blue-100 px-30 max-sm:px-5 max-lg:px-10 max-xl:px-15 max-sm:py-6"
       >
         <router-view />
       </div>
