@@ -23,7 +23,7 @@ const navbar = [
   },
   {
     name: "Сообщество",
-    path: "chat",
+    path: "chat-user",
   },
   {
     name: "Блог",

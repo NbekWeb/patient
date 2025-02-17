@@ -49,7 +49,18 @@ const router = createRouter({
         {
           path: 'chat',
           name: 'chat',
-          component: () => import('@/pages/Chat.vue')
+          component: () => import('@/pages/Chat.vue'),
+          children: [{
+              path: '',
+              name: 'chat-user',
+              component: () => import('@/components/chat/users.vue')
+            },
+            {
+              path: 'item/:id',
+              name: 'chat-item',
+              component: () => import('@/components/chat/card.vue')
+            },
+          ]
         },
         {
           path: 'user/:id',

@@ -6,18 +6,23 @@ import useUser from "@/stores/user.pinia";
 import useCore from "@/stores/core.pinia";
 import useMedical from "@/stores/medical.pinia";
 import useFollowers from "@/stores/followers.pinia";
+import useChats from "@/stores/chat.pinia";
 
 import MedicalOne from "@/components/home/MedicalOne.vue";
 import note from "@/components/home/note.vue";
 import dayjs from "dayjs";
 
 import userIcon from "@/components/icons/user.vue";
+import "dayjs/locale/ru";
+
+dayjs.locale("ru");
 
 const router = useRouter();
 const route = useRoute();
 const userPinia = useUser();
 const followersPinia = useFollowers();
 const core = useCore();
+const chatsPinia = useChats();
 const medicalPinia = useMedical();
 
 const { loadingUrl } = storeToRefs(core);
@@ -44,7 +49,9 @@ const formatDate = (date) => {
 
 const follow = () => {
   followersPinia.addFollowers({ follow: guest.value.id }, () => {
-    router.push({ name: "home" });
+    chatsPinia.addChats({ username: guest.value.username }, () => {
+      router.push({ name: "home" });
+    });
   });
 };
 

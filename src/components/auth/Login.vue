@@ -45,7 +45,6 @@ const handleSubmit = async () => {
       }
     );
   } catch (error) {
-    console.log(error);
     message.error("Пожалуйста, заполните форму корректно!");
   }
 };

@@ -1,27 +1,26 @@
-// websocket.js
 export default class WebSocketService {
-    constructor(convoId, userToken) {
+    constructor(convoId, userToken, onMessageCallback) {
         this.ws = null;
         this.convoId = convoId;
         this.userToken = userToken;
-        this.url = `ws://api.tabakoptrf.ru/ws/chat/${this.convoId}/?token=${this.userToken}`;
+        this.url = `wss://api.tabakoptrf.ru/ws/chat/${this.convoId}/?token=${this.userToken}`;
+        this.onMessageCallback = onMessageCallback; // Store the callback
     }
 
     connect() {
         this.ws = new WebSocket(this.url);
 
-        this.ws.onopen = () => {
-            console.log("WebSocket Connected");
-        };
+        this.ws.onopen = () => {};
 
         this.ws.onmessage = (event) => {
             const message = JSON.parse(event.data);
-            console.log("New message:", message);
 
+            if (this.onMessageCallback) {
+                this.onMessageCallback(message); // Call the callback with the new message
+            }
         };
 
         this.ws.onclose = () => {
-            console.log("WebSocket Disconnected");
             setTimeout(() => this.connect(), 3000); // Auto-reconnect
         };
 

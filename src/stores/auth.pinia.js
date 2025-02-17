@@ -51,7 +51,6 @@ const useAuth = defineStore('auth', {
                     callback()
                 })
                 .catch((error) => {
-                    console.log(error)
                     const errors = error.response.data;
                     if (errors.username) {
                         message.error(errors.username[0]);
