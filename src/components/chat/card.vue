@@ -30,7 +30,9 @@ let wsService = null;
 
 const onMessage = () => {
   chatPinia.getChat(route.params.id, () => {
-    scrollToBottom();
+    setTimeout(() => {
+      scrollToBottom();
+    }, 300);
   });
 };
 
@@ -119,7 +121,9 @@ onUnmounted(() => {
         </div>
       </template>
       <span v-else></span>
-      <div class="flex gap-5 p-3 border rounded-xl border-blue-700/20 max-sm:py-1 max-sm:px-2">
+      <div
+        class="flex gap-5 p-3 border rounded-xl border-blue-700/20 max-sm:py-1 max-sm:px-2"
+      >
         <input
           @keyup.enter="msg && sendMessage()"
           type="text"

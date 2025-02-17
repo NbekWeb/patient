@@ -23,7 +23,7 @@ const props = defineProps({
     </div>
     <div
       :class="
-        user.username !== item?.sender?.username
+        user.username == item?.sender?.username
           ? 'bg-[#FECA341A]'
           : 'bg-[#292A2908]'
       "

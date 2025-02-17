@@ -34,6 +34,8 @@ const rules = {
   password: [{ required: true, message: "Введите пароль", trigger: "blur" }],
 };
 
+
+
 const handleSubmit = async () => {
   try {
     await formRef.value.validate();
@@ -145,12 +147,16 @@ onMounted(() => {
           Войти с помощью Госуслуги
         </div>
       </a-button>
-      <a-button class="flex justify-center w-full" type="primary">
+      <a-button
+        
+        class="flex justify-center w-full"
+        type="primary"
+      >
         <div
           class="py-1.5 flex gap-3.5 h-full items-center font-bold text-white"
         >
           <img src="@/assets/img/wk.png" class="h-4" />
-          Войти с помощью Госуслуги
+          Войти с помощью Вконтакте
         </div>
       </a-button>
     </div>
