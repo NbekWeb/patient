@@ -29,36 +29,47 @@ const unfollow = (id) => {
     </div>
 
     <template v-if="followers.length > 0">
-      <div class="flex flex-col text-blue-700 gap-3.5">
+      <div class="flex flex-col text-blue-700 gap-3.5 overflow-x-hidden">
         <div
-          class="flex items-center gap-6 pb-3.5 border-blue-700/20"
-          :class="i+1 != followers.length && 'border-b'"
+          class="flex items-center gap-6 pb-3.5 border-blue-700/20 justify-between max-md:gap-4 max-sm:flex-col max-sm:items-start"
+          :class="i + 1 != followers.length && 'border-b'"
           v-for="(follower, i) in followers"
           :key="i"
         >
-          <div class="relative w-17 h-17 min-w-17">
-            <a-avatar
-              v-if="!follower?.follow?.avatar"
-              class="flex items-center w-full h-full text-4xl text-blue-700 hover:cursor-pointer hover:qopacity-60"
+          <div
+            class="flex items-center gap-6 max-w-[calc(100%-150px)] max-md:gap-4 max-sm:max-w-full"
+          >
+            <div class="relative w-17 h-17 min-w-17">
+              <a-avatar
+                v-if="!follower?.follow?.avatar"
+                class="flex items-center w-full h-full text-4xl text-blue-700 hover:cursor-pointer hover:qopacity-60"
+              >
+                <user-icon class="" />
+              </a-avatar>
+              <img
+                v-else
+                :src="follower?.follow.avatar"
+                class="w-full h-full rounded-full"
+              />
+            </div>
+            <div
+              class="flex flex-col flex-grow gap-1 overflow-hidden max-w-max"
             >
-              <user-icon class="" />
-            </a-avatar>
-            <img
-              v-else
-              :src="follower?.follow.avatar"
-              class="w-full h-full rounded-full"
-            />
+              <span class="text-lg font-semibold truncate">
+                {{ follower?.follow?.first_name }}
+                {{ follower?.follow?.last_name }}
+              </span>
+              <span class="text-sm"
+                >{{ getAge(follower?.follow?.birth_date) }} года</span
+              >
+            </div>
           </div>
-          <div class="flex flex-col flex-grow gap-1 overflow-hidden">
-            <span class="flex-grow text-lg font-semibold truncate">
-              {{ follower?.follow?.first_name }}
-              {{ follower?.follow?.last_name }}
-            </span>
-            <span class="text-sm"
-              >{{ getAge(follower?.follow?.birth_date) }} года</span
-            >
-          </div>
-          <a-button @click="unfollow(follower.id)"> Отписаться </a-button>
+          <a-button
+            @click="unfollow(follower.id)"
+            class="flex justify-center min-w-30 max-sm:w-full"
+          >
+            Отписаться
+          </a-button>
         </div>
       </div>
     </template>

@@ -21,10 +21,15 @@ const formattedDate = computed(() =>
 );
 </script>
 <template>
-  <div class="grid grid-cols-2 text-blue-700 bg-white gap-9 rounded-xl">
+  <div
+    class="grid grid-cols-2 text-blue-700 bg-white gap-9 rounded-xl max-md:grid-cols-1"
+  >
     <!-- {{ data }} -->
-    <img :src="data.images?.[0]?.image" class="w-full rounded-l-xl" />
-    <div class="flex flex-col justify-between py-6 text-sm max-2xl:py-4">
+    <img
+      :src="data.images?.[0]?.image"
+      class="w-full rounded-l-xl max-md:rounded-bl-none max-md:rounded-t-xl"
+    />
+    <div class="flex flex-col justify-between gap-3 py-6 text-sm max-2xl:py-4">
       <div class="flex flex-col gap-3.5 max-2xl:gap-2">
         <span>{{ formattedDate }}</span>
         <span class="text-2xl font-semibold max-xl:truncate">

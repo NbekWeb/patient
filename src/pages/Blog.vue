@@ -51,7 +51,7 @@ onMounted(() => {
 <template>
   <a-spin :spinning="loadingUrl.has('blogs/list/')">
     <div class="text-blue-700">
-      <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-6 max-md:gap-3">
         <div class="flex items-center gap-3 text-sm">
           <router-link :to="{ name: 'main' }" class="text-blue-700"
             >Главная</router-link
@@ -61,7 +61,7 @@ onMounted(() => {
             >Блог</router-link
           >
         </div>
-        <h2 class="text-4xl font-semibold">Блог</h2>
+        <h2 class="text-4xl font-semibold ">Блог</h2>
         <div class="flex flex-col gap-3.5">
           <span class="text-lg font-semibold">Популярные теги:</span>
           <div class="flex gap-3.5 flex-wrap text-sm">

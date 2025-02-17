@@ -110,7 +110,7 @@ const handleOk = async () => {
     <div v-if="demografic.length" class="grid grid-cols-3 gap-4 max-sm:grid-cols-2 ">
       <template v-for="(item, i) in dataDemo" :key="i">
         <div class="font-semibold ">{{ item.name }}:</div>
-        <div class="col-span-2 max-sm:col-span-1">{{ item.value }}</div>
+        <div class="col-span-2 break-words max-sm:col-span-1">{{ item.value }}</div>
       </template>
     </div>
 
