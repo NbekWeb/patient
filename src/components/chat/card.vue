@@ -128,7 +128,7 @@ onUnmounted(() => {
           @keyup.enter="msg && sendMessage()"
           type="text"
           v-model="msg"
-          placeholder="Оставить комментарий"
+          placeholder="Напишите сообщение"
           class="flex-grow text-blue-700 border-none outline-none"
         />
 

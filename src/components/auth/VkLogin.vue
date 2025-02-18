@@ -58,9 +58,9 @@ const handleSubmit = async () => {
 
 onMounted(() => {
   const token = localStorage.getItem("access_token");
-  if (!!token) {
-    router.push({ name: "home" });
-  }
+  // if (!!token) {
+  //   router.push({ name: "home" });
+  // }
   auth.getCaptcha(() => {
     auth.postLoginVk(
       { callback_url: callback_url.value },
