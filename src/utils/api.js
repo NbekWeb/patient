@@ -44,8 +44,8 @@ function createAxiosResponseInterceptor() {
 }
 
 function Clear() {
-    // localStorage.removeItem("access_token");
-    // window.location.href = "/auth/login";
+    localStorage.removeItem("access_token");
+    window.location.href = "/auth/login";
     return null;
 }
 
