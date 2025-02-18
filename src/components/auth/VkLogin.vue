@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, onMounted, ref,computed } from "vue";
+import { reactive, onMounted, ref, computed } from "vue";
 import { message } from "ant-design-vue";
 import { RouterLink, useRouter, useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
@@ -18,16 +18,15 @@ const router = useRouter();
 const route = useRoute();
 
 const formRef = ref();
-const currentUrl = computed(() => {
+const callback_url = computed(() => {
   if (typeof window !== "undefined") {
     return new URL(route.fullPath, window.location.origin).href;
   }
-  return ""; // Fallback for SSR
+  return "";
 });
 
 const auth = useAuth();
 const core = useCore();
-
 
 const { loadingUrl } = storeToRefs(core);
 const { captcha } = storeToRefs(auth);
@@ -62,8 +61,18 @@ onMounted(() => {
   if (!!token) {
     router.push({ name: "home" });
   }
-  auth.getCaptcha();
-  //   auth.postLoginVk();
+  auth.getCaptcha(() => {
+    auth.postLoginVk(
+      { callback_url: callback_url.value },
+      () => {
+        message.success("Успешный вход!");
+        router.push({ name: "home" });
+      },
+      () => {
+        router.push({ name: "login" });
+      }
+    );
+  });
 });
 </script>
 <template>
@@ -79,8 +88,6 @@ onMounted(() => {
       ref="formRef"
       @finish="handleSubmit"
     >
-  {{ currentUrl }}
-
       <a-form-item label="Ваш логин или email" name="identifier">
         <a-input
           v-model:value="formState.identifier"

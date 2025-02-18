@@ -34,7 +34,10 @@ const rules = {
   password: [{ required: true, message: "Введите пароль", trigger: "blur" }],
 };
 
-
+const redirectToVK = () => {
+  window.location.href =
+    "https://oauth.vk.com/authorize?client_id=52982778&redirect_uri=https://patient-opal.vercel.app/auth/vk/login/callback/&display=page&scope=email&response_type=code&v=5.131";
+};
 
 const handleSubmit = async () => {
   try {
@@ -148,7 +151,7 @@ onMounted(() => {
         </div>
       </a-button>
       <a-button
-        
+        @click="redirectToVK"
         class="flex justify-center w-full"
         type="primary"
       >

@@ -15,7 +15,7 @@ const useAuth = defineStore('auth', {
         captcha: {}
     }),
     actions: {
-        getCaptcha() {
+        getCaptcha(callback = () => {}) {
             const core = useCore()
             core.loadingUrl.add('auth/captcha')
             api({
@@ -26,6 +26,7 @@ const useAuth = defineStore('auth', {
                     data
                 }) => {
                     this.captcha = data
+                    callback()
                 })
                 .catch(() => {
                     message.error('Ошибка при загрузке капчи');
@@ -96,7 +97,7 @@ const useAuth = defineStore('auth', {
                     core.loadingUrl.delete('auth/login')
                 })
         },
-        postLoginVk(data, callback) {
+        postLoginVk(data, callback, erorCallback) {
             const core = useCore()
             core.loadingUrl.add('account/auth/check/vk/')
             api({
@@ -112,7 +113,7 @@ const useAuth = defineStore('auth', {
                     callback()
                 })
                 .catch((error) => {
-
+                    erorCallback()
                     message.error('Что-то пошло не так!');
                 })
                 .finally(() => {

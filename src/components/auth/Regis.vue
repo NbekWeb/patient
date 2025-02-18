@@ -50,6 +50,10 @@ const validatePasswordConfirm = (_, value) => {
   return Promise.resolve();
 };
 
+const redirectToVK = () => {
+  window.location.href =
+    "https://oauth.vk.com/authorize?client_id=52982778&redirect_uri=https://patient-opal.vercel.app/auth/vk/login/callback/&display=page&scope=email&response_type=code&v=5.131";
+};
 const rules = {
   email: [
     { required: true, message: "Введите ваш  email", trigger: "blur" },
@@ -219,12 +223,16 @@ onMounted(() => {
           Войти с помощью Госуслуги
         </div>
       </a-button>
-      <a-button class="flex justify-center w-full" type="primary">
+      <a-button
+        @click="redirectToVK"
+        class="flex justify-center w-full"
+        type="primary"
+      >
         <div
           class="py-1.5 flex gap-3.5 h-full items-center font-bold text-white"
         >
           <img src="@/assets/img/wk.png" class="h-4" />
-          Войти с помощью Госуслуги
+          Войти с помощью Вконтакте
         </div>
       </a-button>
     </div>
