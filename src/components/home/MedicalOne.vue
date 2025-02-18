@@ -9,6 +9,9 @@ import { ref, reactive, onMounted } from "vue";
 import MedicalModal from "./MedicalModal.vue";
 
 import useMedical from "@/stores/medical.pinia";
+import "dayjs/locale/ru";
+
+dayjs.locale("ru");
 
 const medicalPinia = useMedical();
 
@@ -35,8 +38,7 @@ defineProps({
   <div class="flex items-center justify-between gap-10">
     <span class="">
       {{ data.history }}
-      {{ dayjs(data.start_date).format("YYYY") }}-
-      {{ dayjs(data.still_ongoing).format("YYYY") }} г
+      {{ dayjs(data.start_date).format("DD-MMMM,YYYY") }}
     </span>
     <a-popover
       v-if="guest"
