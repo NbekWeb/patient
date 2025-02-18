@@ -83,9 +83,9 @@ router.beforeEach((to, from, next) => {
 
   // document.title = to.meta.title || "Авторизоваться";
 
-  // if (to.name === "login" || to.name === 'regis' || to.name === 'vklogin') {
-  //   return next();
-  // }
+  if (to.name === "login" || to.name === 'regis' || to.name === 'vklogin') {
+    return next();
+  }
 
   if (accessToken) {
     return next();
