@@ -110,10 +110,35 @@ const useAuth = defineStore('auth', {
                 }) => {
 
                     localStorage.setItem('access_token', data.access)
-                    callback()
+                    this.postVk({
+                        access_token: data.access_token
+                    }, callback)
+
                 })
                 .catch((error) => {
                     erorCallback()
+                    message.error('Что-то пошло не так!');
+                })
+                .finally(() => {
+                    core.loadingUrl.delete('account/auth/check/vk/')
+                })
+        },
+        postVk(data, callback) {
+            const core = useCore()
+            core.loadingUrl.add('account/auth/vk/')
+            api({
+                    url: 'account/auth/vk/',
+                    method: 'POST',
+                    data
+                })
+                .then(({
+                    data
+                }) => {
+
+                    localStorage.setItem('access_token', data.access)
+                    callback()
+                })
+                .catch((error) => {
                     message.error('Что-то пошло не так!');
                 })
                 .finally(() => {
