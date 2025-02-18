@@ -74,9 +74,12 @@ const useDemografic = defineStore('demografic', {
                     message.success('Демографические данные болезни добавлена!');
                     callback()
                 })
-                .catch(() => {
-
-                    message.error('Что-то пошло не так!');
+                .catch((e) => {
+                    if (e.response && e.response.data && e.response.data.biography && e.response.data.biography.length) {
+                        message.error(e.response.data.biography[0]);
+                    } else {
+                        message.error('Что-то пошло не так!');
+                    }
                 })
                 .finally(() => {
                     core.loadingUrl.delete('users/demographics/')
@@ -95,9 +98,13 @@ const useDemografic = defineStore('demografic', {
                     message.success('Демографические данные изменён!');
 
                 })
-                .catch(() => {
+                .catch((e) => {
+                    if (e.response && e.response.data && e.response.data.biography && e.response.data.biography.length) {
+                        message.error(e.response.data.biography[0]);
+                    } else {
+                        message.error('Что-то пошло не так!');
+                    }
 
-                    message.error('Что-то пошло не так!');
                 })
                 .finally(() => {
                     core.loadingUrl.delete('users/demographics/')
