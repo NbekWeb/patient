@@ -106,7 +106,7 @@ onUnmounted(() => {
       <template v-if="chat.length > 0">
         <div
           ref="chatContainerRef"
-          class="max-h-[calc(100vh-440px)] overflow-y-auto blue-scrollbar pr-4 max-sm:pr-2"
+          class="max-h-[calc(100vh-470px)] overflow-y-auto blue-scrollbar pr-4 max-sm:pr-2 max-sm:max-h-[calc(100vh-435px)] "
         >
           <div v-for="(items, i) in groupedChats" :key="i" class="">
             <div class="flex items-center gap-3 mb-5 text-blue-700/60">

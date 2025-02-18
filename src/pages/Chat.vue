@@ -6,7 +6,7 @@ import { RouterView } from "vue-router";
     <div class="flex flex-col gap-6 max-sm:gap-4">
       <div class="flex flex-col gap-6 max-sm:gap-4">
         <div class="flex items-center gap-3 text-sm">
-          <router-link :to="{ name: 'main' }" class="text-blue-700"
+          <router-link :to="{ name: 'home' }" class="text-blue-700"
             >Главная</router-link
           >
           <span>/</span>

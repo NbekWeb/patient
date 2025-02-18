@@ -15,11 +15,12 @@ const props = defineProps({
     <div class="self-end w-15 h-15 min-w-15">
       <a-avatar
         class="flex items-center justify-center w-full h-full"
-        v-if="!item?.avatar"
+        v-if="!item?.sender?.avatar"
       >
         <userIcon class="text-3xl text-blue-700" />
       </a-avatar>
-      <img :src="item.avatar" v-else class="w-full h-full rounded-full" />
+      <img :src="item?.sender?.avatar" v-else class="w-full h-full rounded-full" />
+      
     </div>
     <div
       :class="
