@@ -25,6 +25,12 @@ const router = createRouter({
           name: 'regis',
           component: Regis,
         },
+        {
+          path: 'vk/login/callback',
+          name: 'vklogin',
+          component: () => import('@/components/auth/VkLogin.vue'),
+        },
+
       ]
     },
     {
@@ -77,7 +83,7 @@ router.beforeEach((to, from, next) => {
 
   // document.title = to.meta.title || "Авторизоваться";
 
-  if (to.name === "login" || to.name === 'regis') {
+  if (to.name === "login" || to.name === 'regis' || to.name === 'vklogin') {
     return next();
   }
 

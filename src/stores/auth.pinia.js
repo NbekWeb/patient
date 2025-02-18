@@ -96,6 +96,29 @@ const useAuth = defineStore('auth', {
                     core.loadingUrl.delete('auth/login')
                 })
         },
+        postLoginVk(data, callback) {
+            const core = useCore()
+            core.loadingUrl.add('account/auth/check/vk/')
+            api({
+                    url: 'account/auth/check/vk/',
+                    method: 'POST',
+                    data
+                })
+                .then(({
+                    data
+                }) => {
+
+                    localStorage.setItem('access_token', data.access)
+                    callback()
+                })
+                .catch((error) => {
+
+                    message.error('Что-то пошло не так!');
+                })
+                .finally(() => {
+                    core.loadingUrl.delete('account/auth/check/vk/')
+                })
+        },
     }
 })
 
