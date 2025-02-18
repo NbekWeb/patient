@@ -109,10 +109,10 @@ const useAuth = defineStore('auth', {
                     data
                 }) => {
 
-                    localStorage.setItem('access_token', data.access)
+
                     this.postVk({
                         access_token: data.access_token
-                    }, callback)
+                    }, callback, erorCallback)
 
                 })
                 .catch((error) => {
@@ -123,7 +123,7 @@ const useAuth = defineStore('auth', {
                     core.loadingUrl.delete('account/auth/check/vk/')
                 })
         },
-        postVk(data, callback) {
+        postVk(data, callback, erorCallback) {
             const core = useCore()
             core.loadingUrl.add('account/auth/vk/')
             api({
@@ -139,6 +139,7 @@ const useAuth = defineStore('auth', {
                     callback()
                 })
                 .catch((error) => {
+                    erorCallback()
                     message.error('Что-то пошло не так!');
                 })
                 .finally(() => {
