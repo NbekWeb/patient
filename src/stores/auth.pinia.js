@@ -135,7 +135,7 @@ const useAuth = defineStore('auth', {
                     data
                 }) => {
 
-                    localStorage.setItem('access_token', data.access)
+                    localStorage.setItem('access_token', data.access_token)
                     callback()
                 })
                 .catch((error) => {
