@@ -5,7 +5,7 @@ import useNotes from "@/stores/notes.pinia";
 import dayjs from "dayjs";
 import plus from "../icons/plus.vue";
 
-import note from "./note.vue";
+import noteCard from "./note.vue";
 import "dayjs/locale/ru";
 
 import { ref, onMounted, reactive } from "vue";
@@ -80,7 +80,7 @@ onMounted(() => {
       class="grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1"
     >
     {{ notes }}
-      <note :note="note" v-for="(note, i) in notes" :key="i" />
+      <note-card :note="note" v-for="(note, i) in notes" :key="i" />
     </div>
     <a-empty description="Нет данных" v-else />
   </div>
