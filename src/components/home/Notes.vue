@@ -79,6 +79,7 @@ onMounted(() => {
       v-if="notes?.length > 0"
       class="grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1"
     >
+    {{ notes }}
       <note :note="note" v-for="(note, i) in notes" :key="i" />
     </div>
     <a-empty description="Нет данных" v-else />
