@@ -90,13 +90,16 @@ const useUser = defineStore('user', {
 
             if (data.avatar) {
                 formData.append("avatar", data.avatar);
+            } else if (!data.avatar && !!this.user.avatar){
+                formData.append("avatar", '');
+
             }
-            api({
+                api({
                     url: 'account/user/',
                     method: 'PUT',
                     data: formData,
                     headers: {
-                        "Content-Type": "multipart/form-data", // Important for FormData
+                        "Content-Type": "multipart/form-data", 
                     },
                 })
                 .then(({

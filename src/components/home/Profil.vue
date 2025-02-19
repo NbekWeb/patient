@@ -43,19 +43,38 @@ const rules = {
 const save = async () => {
   try {
     await formRef.value.validate();
-    userPinia.updateUser(
-      {
-        ...formState,
+    if (!!formState.upload) {
+      userPinia.updateUser(
+        {
+          ...formState,
+          username: user.value.username,
+          email: user.value.email,
+        },
+        () => {
+          if (new_password.value) {
+            userPinia.updatePassword({ new_password: new_password.value });
+          }
+          handleCancel();
+        }
+      );
+    } else {
+      const data = {
+        first_name: formState.first_name,
+        last_name: formState.last_name,
+        birth_date: formState.birth_date,
         username: user.value.username,
         email: user.value.email,
-      },
-      () => {
+      };
+      if (!formState.avatar) {
+        data.avatar = null;
+      }
+      userPinia.updateUser({ ...data }, () => {
         if (new_password.value) {
           userPinia.updatePassword({ new_password: new_password.value });
         }
         handleCancel();
-      }
-    );
+      });
+    }
   } catch (error) {
     message.error("Пожалуйста, заполните форму корректно!");
   }
@@ -88,7 +107,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="flex gap-5 mt-5 max-sm:flex-col ">
+  <div class="flex gap-5 mt-5 max-sm:flex-col">
     <div class="relative w-28 h-28 group max-sm:mx-auto">
       <a-avatar
         class="flex items-center w-full h-full text-blue-700 hover:cursor-pointer group-hover:opacity-40"
