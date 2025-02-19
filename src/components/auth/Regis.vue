@@ -52,7 +52,7 @@ const validatePasswordConfirm = (_, value) => {
 
 const redirectToVK = () => {
   window.location.href =
-    "https://oauth.vk.com/authorize?client_id=52982778&redirect_uri=https://patient-opal.vercel.app/auth/vk/login/callback/&display=page&scope=email&response_type=code&v=5.131";
+    "https://oauth.vk.com/authorize?client_id=52982778&redirect_uri=https://xn--d1aadaem2ajbjp9p.xn--p1ai/auth/vk/login/callback/&display=page&scope=email&response_type=code&v=5.131";
 };
 const rules = {
   email: [
