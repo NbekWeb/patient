@@ -62,16 +62,16 @@ onMounted(() => {
     router.push({ name: "home" });
   }
   auth.getCaptcha(() => {
-    auth.postLoginVk(
-      { callback_url: callback_url.value },
-      () => {
-        message.success("Успешный вход!");
-        router.push({ name: "home" });
-      },
-      () => {
-        router.push({ name: "login" });
-      }
-    );
+    // auth.postLoginVk(
+    //   { callback_url: callback_url.value },
+    //   () => {
+    //     message.success("Успешный вход!");
+    //     router.push({ name: "home" });
+    //   },
+    //   () => {
+    //     router.push({ name: "login" });
+    //   }
+    // );
   });
 });
 </script>
